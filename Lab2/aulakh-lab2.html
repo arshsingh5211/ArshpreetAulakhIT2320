@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="utf-8"/>
+   <style>
+   
+   </style>
+   <title>IT 2320 - Lab 2</title>
+   <pre>
+   <script>
+      "use strict";
+	  
+	  // set up an array and initialize the first two values
+	  var fibArray = [];
+	  fibArray[0] = 0;
+	  fibArray[1] = 1;
+	  
+	  // declare a variable for the size of the squence 
+	  var fibNum;
+	  
+	  // prompt user for how many 
+      var fibNum = prompt("How many numbers would you like in the Fibonacci Sequence?");
+      
+	  // check that fibNum >= 3
+
+      //var fibNum = 0;
+      while (fibNum < 3) {
+              alert("Sorry, you must choose to display at least 3 numbers. Please run the program again.");
+              var fibNum = prompt("How many numbers would you like in the Fibonacci Sequence?");
+      }
+
+	  // write the values into the array
+	  // You start at 2 because the first two values are already there
+
+	  for (var i = 2; i < fibNum; i++) {
+	     fibArray.push(fibArray[i - 2] + fibArray[i - 1])
+	  }
+	  // read from the array and print balues to screen
+	  // another for loop 
+	  
+      document.writeln("<h3>Fibonacci Sequence up to " + fibNum + " values:</h3>")
+
+      for (var i = 0; i < fibNum; i++) {
+          document.writeln(fibArray[i]);
+      }
+
+	  // calculate golden ratio and display it
+	  //  last number / 2nd last number
+
+      document.writeln("\nTrue Golden Ratio: 1.6180339")
+
+      var calculatedGoldenRatio = fibArray[fibNum - 1]/fibArray[fibNum - 2];
+      document.writeln("Actual Golden Ratio of your last two values: " + calculatedGoldenRatio);
+
+   // commented out line 26 that sets value at 0, and changed the prompt question
+   </script>
+   </pre>
+</head>
+<body>
+   <h2>Arshpreet Aulakh - IT 2320 - Lab 2</h2>
+
+</body>
+
+</html>
