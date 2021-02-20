@@ -1,0 +1,69 @@
+<html >
+<head>
+    <meta charset="UTF-8">
+	<title>Lab 3 - Factorial Function</title> 
+	<script>
+		"use strict";
+		function calcFactorial(myNum) {
+
+			// calculate the factorial and return that value
+            //0! is equal to 1 and not 0 (https://zero-factorial.com/whatis.html)
+
+            var myFactorial;
+            if ((myNum < 0) || (myNum % 1 > 0 && myNum % 1 < 1)) {
+                alert("Factorials of negative numbers and decimals are undefined. Please choose a non-negative integer.")
+            }
+                
+            // factorials of fractions are defined by gamma functions and factorials of negatives are imaginary (complex) numbers 
+            // so for our purposes I have put it as undefined
+            
+            else {
+                myFactorial = 1;
+                for (var i = myNum; i > 0; i--) {
+                    myFactorial *= i;
+                }
+                    return myFactorial;
+            }
+		}
+
+		function calculate() {
+			// get the number entered into the text box myNum
+			var myNum = document.getElementById('myNum').value;  // get the object and the value in one step
+			
+			// call the factorial function
+			var myFactorial = calcFactorial(myNum);
+            // calculate the square of the number
+			var mySquare = myNum * myNum;
+			
+            // display those values in the proper place in the HTML
+            document.getElementById("myFactorial").value = myFactorial;
+            document.getElementById("mySquare").value = mySquare;
+		}
+        
+		// set up the event for the button 
+		// and put the focus on the input field
+		window.onload = function() {
+		    document.getElementById("goCalculate").onclick = calculate; 
+			document.getElementById("myNum").focus();
+		}; 
+	</script>
+</head> 
+<body>
+	<main>
+	    <h2>Arshpreet Aulakh - IT 2320 - Lab 3</h2>
+		<h3>Enter a Number</h3> 
+		<label for="myNum">My Number Is:</label>
+		<input type="text" id="myNum"><br>
+		<br/>
+		<!-- display the squre here -->
+		<label for="mySquare">My Number Squared:</label> 
+		<input type="text" id="mySquare" disabled><br> 
+		<br/>
+		<!-- display the factorial here -->
+		<label for="myFactorial">My Factorial:</label> 
+		<input type="text" id="myFactorial" disabled><br> 
+		<br/>
+		<input type="button" id="goCalculate" value="GO"><br> 
+	</main> 
+</body>  
+</html>
