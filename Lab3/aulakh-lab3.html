@@ -7,16 +7,11 @@
 		function calcFactorial(myNum) {
 
 			// calculate the factorial and return that value
-            //0! is equal to 1 and not 0 (https://zero-factorial.com/whatis.html)
 
             var myFactorial;
             if ((myNum < 0) || (myNum % 1 > 0 && myNum % 1 < 1)) {
                 alert("Factorials of negative numbers and decimals are undefined. Please choose a non-negative integer.")
             }
-                
-            // factorials of fractions are defined by gamma functions and factorials of negatives are imaginary (complex) numbers 
-            // so for our purposes I have put it as undefined
-            
             else {
                 myFactorial = 1;
                 for (var i = myNum; i > 0; i--) {
@@ -24,7 +19,10 @@
                 }
                     return myFactorial;
             }
-		}
+            // 0! is equal to 1 and not 0 (https://zero-factorial.com/whatis.html)
+            // factorials of fractions are defined by gamma functions and factorials of negatives are imaginary (complex) numbers 
+            // so for our purposes I have put it as undefined
+        }
 
 		function calculate() {
 			// get the number entered into the text box myNum
