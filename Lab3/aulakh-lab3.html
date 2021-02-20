@@ -23,18 +23,16 @@
         }
 
         function calculate() {
-			// get the number entered into the text box myNum
-			var myNum = document.getElementById('myNum').value;  // get the object and the value in one step
-			
-			// call the factorial function
-			var myFactorial = calcFactorial(myNum);
+            // get the number entered into the text box myNum
+            var myNum = document.getElementById('myNum').value;  // get the object and the value in one step
+            // call the factorial function
+            var myFactorial = calcFactorial(myNum);
             // calculate the square of the number
-			var mySquare = myNum * myNum;
-			
+            var mySquare = myNum * myNum;
             // display those values in the proper place in the HTML
             document.getElementById("myFactorial").value = myFactorial;
             document.getElementById("mySquare").value = mySquare;
-		}
+        }
         
 		// set up the event for the button 
 		// and put the focus on the input field
