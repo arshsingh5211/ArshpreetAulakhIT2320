@@ -1,0 +1,105 @@
+<!DOCTYPE.html>
+<html>
+<head>
+<style>
+    ul { display: none;  }
+    body {background-color: whitesmoke;}
+    h1, p {
+        font-family:fantasy;
+        font-size: 24
+    }
+</style>
+<script>
+    "use strict";
+    var $ = function(id) {
+        return document.getElementById(id);
+    };
+    
+    window.onload = function() {
+        var listNode = $("image_list");             // node for the list
+        var imageNode = $("image");                 // node for the img element for the slideshow
+        var time = $("timerVal").value;             // node for the timer
+        
+        var links = listNode.getElementsByTagName("a");
+        
+        // Process image links
+        var i, linkNode, image
+        var imageCache = [];
+        for (i = 0; i < links.length; i++) {
+            linkNode = links[i];
+            
+            // Preload image and copy title properties
+            image = new Image();
+            image.src = linkNode.getAttribute("href");
+            image.title = linkNode.getAttribute("title");
+            imageCache[imageCache.length] = image;
+        }
+        
+        
+        // Start slide show
+        var imageCounter = 0;
+        var timer = setInterval (
+            function displayImage() {
+                if (time <= 0) {
+                    time = $("timerVal").value;
+                    imageCounter = (imageCounter + 1) % imageCache.length; // loop through image cache to get the next one
+                    image = imageCache[imageCounter];
+                    imageNode.src = image.src;
+                }
+                $("timerCount").innerHTML = time;
+                time--;
+            },
+        1000);
+        
+    }
+        function setTimer() {
+            var time = $("timerVal").value;
+            var timer = setInterval(function displayImage() {
+                if (time <= 0) {
+                    imageCounter = (imageCounter + 1) % imageCache.length; // loop through image cache to get the next one
+                    image = imageCache[imageCounter];
+                    imageNode.src = image.src;
+                }
+                //alert("time onchange")
+                //time.onchange = clearInterval(timer);
+                //$("timerCount").innerHTML = time;
+                //time--;
+            }, 1000);
+        }
+        
+        function resetTimer() {
+            var time = $("timerVal").value;
+            //alert("reset");
+            //clearInterval(timer); //getting rid of this switches to glitch but immediate change
+            var newTimer = setInterval(function displayImage() {
+                        clearInterval(timer);
+                        $("timerCount").innerHTML = time;
+                        time--;
+            },1000);
+        }
+        
+        //clearInterval(timer);
+        //setTimer();
+</script>
+</head>
+<body>
+    <main>
+        <h2>Arshpreet Aulakh - IT 2320 - Lab 5</h2>
+        <h1><center>Laadi's Quarantine Life</center></h1>
+        <ul id = "image_list">
+            <li><a href = "images/laadi_smile.jpeg" title = "laadi smiling"></a></li>
+            <li><a href = "images/laadi_sunny.jpeg" title = "laadi in the sunshine"></a></li>
+            <li><a href = "images/laadi_layingdown.jpeg" title = "laadi relaxing in the shade"></a></li>
+            <li><a href = "images/laadi_birthday.jpeg" title = "laadi outside celebrating her birthday"></a></li>
+            <li><a href = "images/laadi_vibing.jpg" title = "laadi vibing with a stereo"></a></li>
+
+        </ul>
+        <p><center>
+           Timer (seconds): <input type="text" id="timerVal" value="5" onchange = "resetTimer()"><br/><br/>
+            <img src="images/laadi_smile.jpeg" alt = "laadi smiling" id = "image"><br/><br/>
+            <h2 id="timerCount">5</h2>
+            </center>
+        </p>
+    </main>
+</body>
+</html>
