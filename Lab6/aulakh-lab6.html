@@ -69,69 +69,77 @@
    function cClick(cKey) {
       if (step == 1) {
 	     // step 1 - getting first number entered
-	     if (isNaN(cKey)) {
-		    // an action key was clicked - save what operation they clicked
-	        if (keyStr=="") {
-			   $('num1').val(); // num1 should be the passed answer
-			} else {
-			   num1 = parseInt(keyStr);
-			}
-		    cAction = cKey;
-			keyStr = "";
-			step = 2;
-			// they keyed in the first number and 
-			// selected what operation
-			// let's disable the action (+ - * /) keys
-			// *** For the action keys (class=actionKey) change the class to disableKey so the keys are grayed out
-             $('.actionKey').attr('class','disableKey');
-         } else {
-              keyStr += cKey;
-			 // *** output the keyStr variable in the display area
-              $('#display').html(keyStr);
-			 // *** be sure it is within this else clause
+          if (isNaN(cKey)) {
+              // an action key was clicked - save what operation they clicked
+              if (keyStr=="") {
+                  $('num1').val(); // num1 should be the passed answer
+              } 
+              else {
+                  num1 = parseInt(keyStr);
+              }
+              cAction = cKey;
+              keyStr = "";
+              step = 2;
+              // they keyed in the first number and 
+              // selected what operation
+              // let's disable the action (+ - * /) keys
+              // *** For the action keys (class=actionKey) change the class to disableKey so the keys are grayed out
+              $('.actionKey').attr('class','disableKey');
           }
-		  
-		 
-	   } else {
-	      // step 2 - getting second number
-	      if (cKey=='equal') {
-		     // equal key clicked
-		     num2 = parseInt(keyStr);
-			 // perform the operation they clicked
-			 if (cAction=="plus") {
-			    answerNum = num1 + num2;
-			 } else if (cAction=='minus') {
-			    answerNum = num1 - num2;
-			} else if (cAction=='multiply') {
-			    answerNum = num1 * num2;	
-			} else if (cAction=='divide') {
-			    if (num2==0) {
-				   answerNum = "undefined";
-				} else {
-			       answerNum = num1 / num2;
-				}
-		    } else if (cAction = 'modulo') {
-                answerNum = num1 % num2;
-            }
-			// *** display the final answer in the display area
-			$("#display").html(answerNum);
-			// reset all the variables to start over
-			num1 = answerNum; // put answer in num1 for next round 
-			num2 = 0;
-			keyStr = "";
-			cAction = "";
-			step = 1;
-			// we had grayed out the action keys (+ - * /) earlier
-			// *** set the class on the action keys back to the class actionKey
-              $(".disableKey").attr("class", "actionKey");
-		} else if (!isNaN(cKey)) {
-		     // they clicked on a number key
-		     keyStr += cKey;
-			 // *** display the number (keyStr) in the display area
-			 $("#display").html(keyStr);
-		}
+          else {
+              keyStr += cKey;
+              // *** output the keyStr variable in the display area
+              $('#display').html(keyStr);
+              // *** be sure it is within this else clause
+          }
+          
+      }
+       else {
+           // step 2 - getting second number
+           if (cKey=='equal') {
+               // equal key clicked
+               num2 = parseInt(keyStr);
+               // perform the operation they clicked
+               if (cAction=="plus") {
+                   answerNum = num1 + num2;
+               }
+               else if (cAction=='minus') {
+                   answerNum = num1 - num2;
+               }
+               else if (cAction=='multiply') {
+                   answerNum = num1 * num2;	
+               }
+               else if (cAction=='divide') {
+                   if (num2==0) {
+                       answerNum = "undefined";
+                   }
+                   else {
+                       answerNum = num1 / num2;
+                   }
+               }
+               else if (cAction = 'modulo') {
+                   answerNum = num1 % num2;
+               }
+               // *** display the final answer in the display area
+               $("#display").html(answerNum);
+               // reset all the variables to start over
+               num1 = answerNum; // put answer in num1 for next round 
+               num2 = 0;
+               keyStr = "";
+               cAction = "";
+               step = 1;
+               // we had grayed out the action keys (+ - * /) earlier
+               // *** set the class on the action keys back to the class actionKey
+               $(".disableKey").attr("class", "actionKey");
+           }
+           else if (!isNaN(cKey)) {
+               // they clicked on a number key
+               keyStr += cKey;
+               // *** display the number (keyStr) in the display area
+               $("#display").html(keyStr);
+           }
+       }
    }
- }
 
 </script>
 </head>
