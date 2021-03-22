@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<meta charset="utf-8">
+<title>Lab 7 - Arshpreet Aulakh</title>
+<script>
+    $(document).ready(function() {
+        $("#img").hide();
+    $("button").click(function() {
+        $("#img").fadeIn(1000,function() {
+            $("#img").animate({left:$(window).width()-400},3000,function() {
+                walkBack();
+                $("#img").animate({left:"0"},3000,function() {
+                  $("#img").fadeOut(1000, function() {
+                      walkForward();
+                  });
+                })
+            })
+        })
+    })
+    })
+    
+    var walkBack = function(){
+        document.getElementById("img").style.transform = 'scaleX(-1)';
+    }
+    
+    var walkForward = function(){
+        document.getElementById("img").style.transform = 'scaleX(+1)';
+    }
+</script>
+</head>
+<body>
+    <h2>Lab 7 - Walking Guy</h2>
+    <button>Start</button>
+    <img id="img" src="lab9-guy-walking.gif" style="position: absolute;">
+</body>
+</html>
