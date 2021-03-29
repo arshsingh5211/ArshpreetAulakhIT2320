@@ -8,13 +8,7 @@
         })
         
         $('#useShipAddress').click(function() {
-            //if (($('#shipAddress').val() == "" || $('#shipCity').val() == "" || $('#shipState').val() == "" || //$('#shipZip').val() == "") && ($(this).prop("checked"))) {
-               // $(this).prop("checked", false);
-               // $(this).prop("disabled", true);
-               // alert("Please enter your shipping address!");
-            //} FIX THIS HOW DO I ENABLE THE CHECKBOX ONCE SHIPPING IS FILLED IN
-            //else 
-            if (($('#shipAddress').val() && $('#shipCity').val() && $('#shipState').val() && $('#shipZip').val()) && ($(this).prop("checked"))) {
+            if ((areAllAddressFieldsFilled) && ($(this).prop("checked"))) {
                 $('#billAddress').val($('#shipAddress').val());
                 $('#billCity').val($('#shipCity').val());
                 $('#billState').val($('#shipState').val());
@@ -35,12 +29,35 @@
                 $('#billZip').val("");
             }
         })
+        
+        $('#comment').keyup(function() {
+            var maxLength = 250;
+            var textLength = $(this).val().length;
+            var textRem = maxLength - textLength;
+            if (textRem > 0) {
+                document.getElementById('msgArea').className = 'blacktext';
+                $('#msgArea').html(textRem + " characters<br>remaining");
+            }
+            else {
+                document.getElementById('msgArea').className = 'redtext';
+                $('#msgArea').html("You have hit the <br>character limit!");
+            }
+        })
     });
+    
+    var areAllAddressFieldsFilled = function() {
+        if ($('#shipAddress').val() == "" || $('#shipCity').val() == "" || $('#shipState').val() == "" || $('#shipZip').val() == "") {
+            return false;
+        }
+            return true;
+    }
 </script>
 <style>
    .graybackground {background-color:#DDDDDD;}
    td {padding:10px; border: 1px solid #ddd;}
    table {width:40%}
+    .blacktext { color:black; }
+    .redtext { color:red; }
 </style>
 </head>
 <body>
@@ -189,7 +206,7 @@
         <td colspan="2"><center><strong>Comment (up to 250 characters)</strong></center></td>
 	</tr>
 	<tr>
-	    <td><strong><span id="msgArea">0 characters<br/>remaining</span></strong></td>
+	    <td><strong><span id="msgArea">250 characters<br/>remaining</span></strong></td>
 		<td><textarea id="comment" maxlength="250" rows="5" cols="50"></textarea></td>
 		<tr>
 		   <td><input type="reset" id="reset" name="reset" value="Reset"></td>
