@@ -8,6 +8,17 @@
         })
         
         $('#useShipAddress').click(function() {
+            if ((areAllAddressFieldsFilled() == false) && ($(this).prop("checked"))) {
+                alert("Please fill out all fields in shipping address!");
+                $(this).prop("checked", false);
+                $(this).prop("disabled", true);
+            }
+            
+            var shipChange = $('.shipping');
+            shipChange.change(function() { 
+                $("#useShipAddress").prop("disabled", false); // make this into an onchange function for when someone starts typing into either of the shipping address fields
+            })
+            
             if ((areAllAddressFieldsFilled) && ($(this).prop("checked"))) {
                 $('#billAddress').val($('#shipAddress').val());
                 $('#billCity').val($('#shipCity').val());
@@ -71,13 +82,13 @@
         <td colspan="2"><center><strong>Shipping Address</strong></center></td>
 	</tr>
 	<tr>
-		<td>Address </td><td><input type="text" id="shipAddress"></td>
+		<td>Address </td><td><input type="text" class="shipping" id="shipAddress"></td>
 	</tr>
 	<tr>
-	    <td>City </td><td><input type="text" id="shipCity"></td>
+	    <td>City </td><td><input type="text" class="shipping" id="shipCity"></td>
 	</tr>
    	<tr>
-	    <td>State <select name="state" id="shipState">
+	    <td>State <select name="state" class="shipping" id="shipState">
 		  <option value="">Select State</option>
 		  <option value="AL">Alabama</option>
 		  <option value="AK">Alaska</option>
@@ -131,7 +142,7 @@
 		  <option value="WI">Wisconsin</option>
 		  <option value="WY">Wyoming</option>
 		  </select></td>
-		<td>ZIP Code <input type="text" id="shipZip"></td>
+		<td>ZIP Code <input type="text" class="shipping" id="shipZip"></td>
 	</tr>
 	<tr class="graybackground">
         <td colspan="2"><center><strong>Billing Address</strong></center></td>
@@ -208,11 +219,11 @@
 	<tr>
 	    <td><strong><span id="msgArea">250 characters<br/>remaining</span></strong></td>
 		<td><textarea id="comment" maxlength="250" rows="5" cols="50"></textarea></td>
+    </tr>
 		<tr>
 		   <td><input type="reset" id="reset" name="reset" value="Reset"></td>
            <td><input type="submit" id="submit" name="submit" value="Submit"></td>
 		</tr>
-	</tr>
 </table>
 </form>
 </body>
