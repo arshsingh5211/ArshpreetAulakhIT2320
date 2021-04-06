@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Lab 9 - Arshpreet Aulakh</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('button').click(function() {
+            var zipcode = $('#zipcode').val();
+            var url = "http://api.openweathermap.org/data/2.5/weather?zip=" + zipcode + ",us&appid=f7841ea95f77032e39970729c5525615&units=imperial";
+                $.ajax({
+                    method: "GET",
+                    url: url,
+                    dataType: "json"
+                }).done(function (result) {
+                    var response = result;
+                    $('#city').html(response.name);
+                    $('#condition').html(response.weather[0].main);
+                    $('#temperature').html(response.main.temp.toFixed(0) + "&deg F");
+                    $('#windspeed').html(response.wind.speed.toFixed(0) + " mph");
+                    $('#winddirection').html(response.wind.deg + "&deg");
+                    $('#humidity').html(response.main.humidity + "%");
+                    $('#mintemp').html(response.main.temp_min.toFixed(0) + "&deg F");
+                    $('#maxtemp').html(response.main.temp_max.toFixed(0) + "&deg F");
+                })
+        })
+    })
+</script>
+</head>
+<body>
+    <h2>Arshpreet Aulakh - IT 2320 - Lab 9</h2>
+    <input type = "text" placeholder = "Please enter your zip code: " id = "zipcode">
+    <button> Get Weather! </button>
+    <table id = "description">
+        <tr>
+            <td>City: </td><td id="city"></td>
+        </tr>
+        <tr>
+            <td>Current Condition: </td><td id="condition"></td>
+        </tr>
+        <tr>
+            <td>Temperature: </td><td id="temperature"></td>
+        </tr>
+        <tr>
+            <td>Wind Speed: </td><td id="windspeed"></td>
+        </tr>
+        <tr>
+            <td>Wind Direction: </td><td id="winddirection"></td>
+        </tr>
+        <tr>
+            <td>Humidity: </td><td id="humidity"></td>
+        </tr>
+        <tr>
+            <td>Minimum Temperature: </td><td id="mintemp"></td>
+        </tr>
+        <tr>
+            <td>Maximum Temperature: </td><td id="maxtemp"></td>
+        </tr>
+    </table>
+</body>
+</html>
