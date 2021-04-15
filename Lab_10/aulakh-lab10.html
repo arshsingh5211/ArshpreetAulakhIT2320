@@ -20,9 +20,10 @@
             }
             
             var textCap = text.toUpperCase();
-            var textWithoutSearchChar = text.replaceAll($('#searchChar').val().toUpperCase(), "");
+            var textWithoutSearchChar = text.toLowerCase().replaceAll($('#searchChar').val().toLowerCase(), "");
             
             function addDays(n){
+                n = n ? n : 0;
                 var t = new Date();
                 t.setDate(t.getDate() + n); 
                 var month = "0"+(t.getMonth()+1);
@@ -100,7 +101,7 @@
         <td><textarea id="textArea" cols="40" rows="15"></textarea></td>
     </tr>
 	<tr>
-	    <td>Date Modifier - Number of Days:</td><td><input type="number" id="numDays" value="0"></td>
+	    <td>Date Modifier - Number of Days:</td><td><input type="number" id="numDays"></td>
     </tr>
     <tr>
         <td>Number of words entered:</td>
