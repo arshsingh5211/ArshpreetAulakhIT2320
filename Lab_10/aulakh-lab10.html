@@ -22,19 +22,33 @@
             var textCap = text.toUpperCase();
             var textWithoutSearchChar = text.replaceAll($('#searchChar').val().toUpperCase(), "");
             
+            function addDays(n){
+                var t = new Date();
+                t.setDate(t.getDate() + n); 
+                var month = "0"+(t.getMonth()+1);
+                var date = "0"+t.getDate();
+                month = month.slice(-2);
+                date = date.slice(-2);
+                var date = month +"/"+date +"/"+t.getFullYear();
+                return date;
+            }
+            // why does it keep aug 18 21 as baseline no matter what???
+            // adds as String instead of int
+            
+            var days = parseInt($('#numDays').val());
             var today = new Date();
-            var todayString = today.toLocaleDateString();
-            var days = $('#numDays').val();
-            var changedDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() + days)
-            var todayChanged = changedDate.toLocaleDateString();
+            //var todayString = today.toLocaleDateString();
+            var changedDate = addDays(days);
+                
+                //new Date(today.getFullYear(), today.getMonth(), today.getDate() + addDays(3));
+            //var todayChanged = changedDate.toLocaleDateString();
             
             $('#wordCount').val(numOfWords);
             $('#charCount').val(countCharOccurrences);
             // ^^could also use Regex & match (if I have time later to figure it out) -- probably more efficient that way
             $('#textCap').val(textCap);
             $('#searchCharRemoved').val(textWithoutSearchChar);
-            $('#dateMod').val(todayString);
-            //someDate.setDate(someDate.getDate() + numberOfDaysToAdd)
+            $('#dateMod').val(changedDate);
         })
     });
 </script>
@@ -85,7 +99,7 @@
 		<td><textarea id="textArea" cols="40" rows="15"></textarea></td>
 	</tr>
 	<tr>
-	    <td>Date Modifier - Number of Days:</td><td><input type="number" id="numDays" ></td>
+	    <td>Date Modifier - Number of Days:</td><td><input type="number" id="numDays" value="0" ></td>
 	</tr>
     <tr>
 	    <td>Number of words entered:</td>
