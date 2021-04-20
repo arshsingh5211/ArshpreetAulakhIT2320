@@ -19,8 +19,8 @@
             function printSearch() {
                 return foundIndex + ": " + words[foundIndex] + '<br>';
             }
-            function searchForString(word) {
-                return word.toLowerCase().includes($('#search').val().toLowerCase());
+            function searchForString(words) {
+                return words.toLowerCase().indexOf($('#search').val().toLowerCase()) > -1;
             }
             for (var i = 0; i < words.length; i++) {
                 foundIndex = words.findIndex(searchForString);
