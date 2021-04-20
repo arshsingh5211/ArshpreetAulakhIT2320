@@ -26,7 +26,11 @@
                 foundIndex = words.findIndex(searchForString);
             }
             
-            $('#results').html(printArr() + printSearch());
+            if (foundIndex == -1) {
+                alert("Sorry, no words contain " + $('#search').val() + "!")
+                $('#results').html(printArr());
+            }
+            else $('#results').html(printArr() + printSearch());
             // was not sure if I should append and add each search to the list or replace each search but replacing made more sense to me
         })
         
