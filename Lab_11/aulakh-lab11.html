@@ -20,14 +20,14 @@
                 return foundIndex + ": " + words[foundIndex] + '<br>';
             }
             function searchForString(word) {
-                return word.includes($('#search').val());
+                return word.toLowerCase().includes($('#search').val().toLowerCase());
             }
             for (var i = 0; i < words.length; i++) {
                 foundIndex = words.findIndex(searchForString);
             }
             
             if (foundIndex == -1) {
-                alert("Sorry, no words contain " + $('#search').val() + "!")
+                alert("Sorry, no words contain " + $('#search').val() + "!");
                 $('#results').html(printArr());
             }
             else $('#results').html(printArr() + printSearch());
