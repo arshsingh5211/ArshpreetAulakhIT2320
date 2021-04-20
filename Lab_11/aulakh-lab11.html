@@ -1,0 +1,58 @@
+<html>
+<head>
+<title>Lab 11 - Arshpreet Aulakh</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        var words = [];
+        function printArr() {
+            return words.join(", ") + '<br><br>';
+        }
+        
+        $('#submitBtn').click(function() {
+            words[words.length] = $('#dataEntered').val();
+            $('#results').html(printArr());   
+        })
+        
+        $('#searchBtn').click(function() {
+            var foundIndex;
+            function printSearch() {
+                return foundIndex + ": " + words[foundIndex] + '<br>';
+            }
+            function searchForString(word) {
+                return word.includes($('#search').val());
+            }
+            for (var i = 0; i < words.length; i++) {
+                foundIndex = words.findIndex(searchForString);
+            }
+            
+            $('#results').html(printArr() + printSearch());
+            // was not sure if I should append and add each search to the list or replace each search but replacing made more sense to me
+        })
+        
+        $('#sort').click(function() {
+            $('#results').html(words.sort().join(', '));
+        })
+        
+        $('#reverse').click(function() {
+            $('#results').html(words.reverse().join(', '));
+        })
+        
+    });
+    
+</script>
+</head>
+<body>
+<h2>Lab 11</h2>
+Enter a string: <input type="text" id="dataEntered">
+<button type="button" id="submitBtn">Submit</button>
+<br /><br />
+Search for this: <input type="text" id="search">
+<button type="button" id="searchBtn">Search</button>
+<br /><br />
+<button type="button" id="sort">Sort the Array</button> <button type="button" id="reverse">Reverse the Array</button> 
+<br /><br />
+<strong>My Array Output</strong><br/>
+<span id="results">Words: </span>
+</body>
+</html>
