@@ -5,23 +5,14 @@
 <script>
     $(document).ready(function() {
         function getGCD () {
-            var a = Math.abs($('#number1').val());
-            var b = Math.abs($('#number2').val());
-            var largest = 0;
-            var smallest = 0;
-            if (a > b) {
-                largest = a;
-                smallest = b;
-            }
-            else {
-                smallest = a;
-                largest = b;
-            }
-            var gcd = largest % smallest;
-            while (largest % smallest != 0) {
-                smallest = largest % gcd;  //error for 15,30 or 20,10 because of divide by 0
-            }
-                return smallest;
+          var a = Math.abs($('#number1').val());
+          var b = Math.abs($('#number2').val());
+          while (b) {
+            var gcd = b;
+            b = a % b;
+            a = gcd;
+          }
+            return a;
         }
         
         function isPrime(num) {
