@@ -12,7 +12,7 @@
             b = a % b;
             a = gcd;
           }
-            return a;
+            return "The greatest common denominator of " + $('#number1').val() + " and " + $('#number2').val() + " is " + a + ".";
         }
         
         function isPrime(num) {
@@ -38,39 +38,36 @@
                 return primeList;
         }
         
-        function printArrToList(arr) {
+        function printArr(arr) {
             var printedArr = "";
             for (var i = 0; i < arr.length; i++) {
                 printedArr += (i + 1) + ". " + arr[i] + "<br>";
             }
-                return printedArr;
+                return "Prime numbers that are less than " + $('#primeInt').val() + "<br>" + printedArr;
         }
         
         $('#submitGCD').click(function() {
-            $('#gcdResult').html(getGCD());
+            $('#results').html(getGCD());
         })
             
         $('#submitPrime').click(function() {
-            $('#primeResult').html(printArrToList(getPrime()));
+            $('#results').html(printArr(getPrime()));
         })
     });
 </script>
 </head>
 <body>
-<h1>Lab 12</h1>
+<h2>Arshpreet Aulakh - IT 2320 - Lab 12</h2>
 <h3>Get the Greatest Common Denominator (GCD) of 2 Integers </h3>
 1st Number: <input type="number" id="number1">
 
 2nd Number: <input type="number" id="number2">
 <button type="button" id="submitGCD">Calculate GCD</button>
-<br /><br />
-<p>Greatest Common Denominator:</p>
-<span id="gcdResult"></span>
 <h3>Get All the Prime Numbers less than:</h3>
 <input type = "number" id = "primeInt">
 <button type="button" id="submitPrime">Get Prime Numbers</button>
 <br /><br />
-<p>Prime Numbers:</p>
-<span id="primeResult"></span>
+<strong>My Output: </strong><br/>
+<span id="results">Results will be displayed here</span>
 </body>
 </html>
