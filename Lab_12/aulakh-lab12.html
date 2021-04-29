@@ -1,0 +1,83 @@
+<html>
+<head>
+<title>Lab 12 - Arshpreet Aulakh</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        function getGCD () {
+            var a = Math.abs($('#number1').val());
+            var b = Math.abs($('#number2').val());
+            var largest = 0;
+            var smallest = 0;
+            if (a > b) {
+                largest = a;
+                smallest = b;
+            }
+            else {
+                smallest = a;
+                largest = b;
+            }
+            var gcd = largest % smallest;
+            while (largest % smallest != 0) {
+                smallest = largest % gcd;  //error for 15,30 or 20,10 because of divide by 0
+            }
+                return smallest;
+        }
+        
+        function isPrime(num) {
+            var start = 2;
+            var limit = Math.sqrt(num);
+            while (start <= limit) {
+                if (num % start++ < 1) {
+                    return false;
+                }
+                    return num > 1;
+        }
+        
+        function getPrime() {
+            var primeList = [];
+            primeList.push(1);
+            primeList.push(2);
+            for (var i = 3; i < $('#primeInt').val(); i += 2) {
+                if (isPrime(i)) {
+                    primeList.push(i);
+                }
+            }
+                return primeList;
+        }
+        
+        function printArrToList(arr) {
+            var printedArr = "";
+            for (var i = 0; i < arr.length; i++) {
+                printedArr += (i + 1) + ". " + arr[i] + "<br>";
+            }
+                return printedArr;
+        }
+        
+        $('#submitGCD').click(function() {
+            $('#gcdResult').html(getGCD());
+        })
+        $('#submitPrime').click(function() {
+            $('#primeResult').html(printArrToList(getPrime()));
+        })
+    });
+</script>
+</head>
+<body>
+<h1>Lab 12</h1>
+<h3>Get the Greatest Common Denominator (GCD) of 2 Integers </h3>
+1st Number: <input type="number" id="number1">
+
+2nd Number: <input type="number" id="number2">
+<button type="button" id="submitGCD">Calculate GCD</button>
+<br /><br />
+<p>Greatest Common Denominator:</p>
+<span id="gcdResult"></span>
+<h3>Get All the Prime Numbers less than:</h3>
+<input type = "number" id = "primeInt">
+<button type="button" id="submitPrime">Get Prime Numbers</button>
+<br /><br />
+<p>Prime Numbers:</p>
+<span id="primeResult"></span>
+</body>
+</html>
