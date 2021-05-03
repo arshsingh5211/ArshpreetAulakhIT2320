@@ -5,26 +5,27 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>		  
 var scale = ["C", "D", "E", "F", "G", "A5", "B5", "C5", "C5",  "B5",  "A5",  "G",  "F",  "E",  "D",  "C" ];
-
     
-//Set up a loop in the playSong function that goes through the scale array, gets a note, finds the correct audio tag object and plays that note.  
-//Each time you read a note, write the name of the note into the span tag defined by the ID "notes". Concatenate each new note to the end so you see the whole sequence.  
 var printNotes ='';
-function playSong() {
+async function playSong() {
     for (var i = 0; i < scale.length; i++) {
         audios = document.getElementById(scale[i]);
-        audios.play();
-        printNotes += scale[i] + " ";
-        $('#notes').html(printNotes);
-    }      
+        await new Promise((resolve) => {
+            audios.onended = resolve;
+            audios.play();
+            printNotes += scale[i] + " ";
+            $('#notes').html(printNotes);
+        })
+    }
 }
+
 </script>
 </head>
 
 <body>
-<h2>Arshpreet Aulakh - IT 2320 - Lab 13 - Async and Await</h2>
+<h2>Arshpreet Aulakh - IT 2320 - Lab 13</h2>
 <button type="button" onclick="playSong()">Play</button>
-<p><h1><span id="notes"></span></h1></p>
+<h1><span id="notes"></span></h1>
 
 <!-- from freesounds.org - user: pinkyfinger -->
 <audio id="A">  
