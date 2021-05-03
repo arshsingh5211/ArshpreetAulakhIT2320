@@ -7,6 +7,7 @@
 var scale = ["C", "D", "E", "F", "G", "A5", "B5", "C5", "C5",  "B5",  "A5",  "G",  "F",  "E",  "D",  "C" ];
     
 var printNotes ='';
+var playNum = 1;
 async function playSong() {
     for (var i = 0; i < scale.length; i++) {
         audios = document.getElementById(scale[i]);
@@ -17,6 +18,7 @@ async function playSong() {
             $('#notes').html(printNotes);
         })
     }
+    $('#notes').html(printNotes += "<br>");
 }
 
 </script>
